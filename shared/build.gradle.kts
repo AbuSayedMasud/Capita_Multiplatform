@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
@@ -68,5 +70,10 @@ sqldelight {
         create("CapitaDb") {
             packageName.set("com.leads.capita")
         }
+    }
+}
+tasks.withType<KotlinCompile>().configureEach {
+    kotlinOptions {
+        freeCompilerArgs += "-Xexpect-actual-classes"
     }
 }
